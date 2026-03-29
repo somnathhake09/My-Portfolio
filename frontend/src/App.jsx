@@ -8,6 +8,7 @@ const globalStyles = `
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Outfit', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
   body.light-mode { background: #f5f5f5; color: #1a1a1a; }
 
@@ -41,7 +42,7 @@ const globalStyles = `
     0%,100% { transform: translateY(0); }
     50%     { transform: translateY(-4px); }
   }
-    @keyframes scrollReveal {
+  @keyframes scrollReveal {
     from { opacity: 0; transform: translateY(60px); }
     to   { opacity: 1; transform: translateY(0); }
   }
@@ -132,6 +133,19 @@ const globalStyles = `
     from { opacity: 0; transform: scale(0.85); }
     to   { opacity: 1; transform: scale(1); }
   }
+  @keyframes typingDot {
+    0%,100% { transform: translateY(0); opacity:0.4; }
+    50%      { transform: translateY(-5px); opacity:1; }
+  }
+  @keyframes pulseDot {
+    0%,100% { transform: scale(1); opacity:1; }
+    50%      { transform: scale(1.4); opacity:0.6; }
+  }
+  @keyframes chatFloat {
+    0%,100% { transform: translateX(0); }
+    25%      { transform: translateX(-8px); }
+    75%      { transform: translateX(8px); }
+  }
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
@@ -144,6 +158,7 @@ const globalStyles = `
     .projects-grid     { grid-template-columns: 1fr !important; }
     .contact-info-grid { grid-template-columns: 1fr !important; }
     .contact-main-grid { grid-template-columns: 1fr !important; }
+    .services-grid     { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 480px) {
     .project-links-row { flex-direction: column !important; }
@@ -252,12 +267,13 @@ function ThemeBtn({ isLight, onClick }) {
 }
 
 /* ════════════════════════════════════════════════════════
-   SHARED: NAVBAR — active link tracks scroll position
+   SHARED: NAVBAR
 ════════════════════════════════════════════════════════ */
 const NAV_ITEMS = [
   { label:'Home',     href:'#home' },
   { label:'About',    href:'#about' },
   { label:'Skills',   href:'#skills' },
+  { label:'Services', href:'#services' },
   { label:'Projects', href:'#projects' },
   { label:'Contact',  href:'#contact' },
 ];
@@ -445,9 +461,9 @@ function AboutSection({ isLight }) {
   },[]);
 
   return (
-    <section id="about" ref={ref} style={{ minHeight:'100vh', padding:'clamp(5.5rem,13vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':' translateY(60px)', transition:'opacity 0.8s ease, transform 0.8s ease' }}>
+    <section id="about" ref={ref} style={{ minHeight:'100vh', padding:'clamp(5.5rem,13vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(2.5rem,6vw,4rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;about_me&gt;</p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           About Me
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', height:'4px', background:'linear-gradient(90deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block', animation:visible?'underlinePop 0.8s ease 0.4s both':'none' }}/>
@@ -459,7 +475,6 @@ function AboutSection({ isLight }) {
           <div style={{ width:'100%', height:'clamp(260px,38vw,430px)', background:'linear-gradient(135deg,#ff5a00 0%,#ff8800 55%,#ffaa00 100%)', borderRadius:'24px', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'clamp(5rem,13vw,8.5rem)', animation:'imageFloat 6s ease-in-out infinite, pulseGlow 4s ease-in-out infinite', position:'relative', overflow:'hidden', cursor:'default' }}>
             <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg,rgba(255,255,255,0.18) 0%,transparent 55%,rgba(255,255,255,0.06) 100%)', borderRadius:'24px', pointerEvents:'none' }}/>
             <div className="image-code-hint" style={{ position:'absolute', top:'14px', left:'16px', fontFamily:"'Fira Code',monospace", fontSize:'clamp(0.58rem,1.2vw,0.75rem)', color:'rgba(255,255,255,0.45)', lineHeight:1.7 }}>
-              {/* {'// developer.js'}<br/>{'const me = {'}<br/>{'  passion: true,'}<br/>{'  learning: ∞,'}<br/>{'  coffee: required'}<br/>{'}'} */}
             </div>
             <div style={{ position:'absolute', bottom:'14px', right:'16px', fontFamily:"'Fira Code',monospace", fontSize:'clamp(0.55rem,1.1vw,0.7rem)', color:'rgba(255,255,255,0.4)' }}>{'</developer>'}</div>
             👨‍💻
@@ -491,8 +506,6 @@ const SKILLS = [
   { icon:'💻', title:'Web Development',  subtitle:'Building modern, responsive web apps', tags:['HTML','CSS','JavaScript','React'], pct:85 },
   { icon:'⚙️', title:'Programming',      subtitle:'Core languages for backend & systems',  tags:['Python','C++'], pct:80 },
   { icon:'🤖', title:'AI-Assisted Website Development',  subtitle:'Using AI to accelerate web development and improve design quality.', tags:['AI Tools'], pct:85 },
-  // { icon:'🎨', title:'UI/UX Design',     subtitle:'Crafting intuitive user experiences',   tags:['Figma','Adobe XD','Canva'],       pct:75 },
-  // { icon:'🔧', title:'Problem Solving',  subtitle:'Algorithms, logic & data structures',  tags:['DSA','Algorithms','OOP'],pct:90 },
   { icon:'🗄️', title:'Database',         subtitle:'Relational & NoSQL data management',   tags:['MySQL','MongoDB Altas'],pct:70 },
   { icon:'🔗', title:'Version Control',  subtitle:'Collaborative development & CI/CD',    tags:['Git','GitHub'],pct:85 },
 ];
@@ -541,9 +554,9 @@ function SkillsSection({ isLight }) {
   const avgPct = Math.round(SKILLS.reduce((a,s)=>a+s.pct,0)/SKILLS.length);
 
   return (
-    <section id="skills" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':' translateY(60px)', transition:'opacity 0.8s ease, transform 0.8s ease' }}>
+    <section id="skills" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(1.5rem,3vw,2.5rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;my_skills&gt;</p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           My Skills
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', width:'clamp(50px,8vw,80px)', height:'4px', background:'linear-gradient(135deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block' }}/>
@@ -567,7 +580,130 @@ function SkillsSection({ isLight }) {
       <div className="skills-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(300px,100%),1fr))', gap:'clamp(1.2rem,2.5vw,2rem)', maxWidth:'1200px', margin:'0 auto' }}>
         {SKILLS.map((s,i)=><SkillCard key={s.title} {...s} isLight={isLight} triggered={triggered} delay={`${0.1+i*0.1}s`}/>)}
       </div>
-      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}></p>
+      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>&lt;/my_skills&gt;</p>
+    </section>
+  );
+}
+
+/* ════════════════════════════════════════════════════════
+   SECTION: SERVICES
+════════════════════════════════════════════════════════ */
+const SERVICES = [
+  { icon:'🌐', title:'Website Development',
+    desc:'I build fast, responsive, and modern websites tailored to your needs.',
+    tags:['React','Node.js','MongoDB'], color:'#ff5a00' },
+  { icon:'🎯', title:'Landing Page Design',
+    desc:'High-converting landing pages that turn visitors into customers.',
+    tags:['UI/UX','HTML','CSS'], color:'#ff7a00' },
+  { icon:'🗂️', title:'Portfolio Websites',
+    desc:'Clean and professional personal portfolios that make you stand out.',
+    tags:['React','Design'], color:'#ff6a00' },
+  { icon:'🔧', title:'Optimization & Bug Fixing',
+    desc:'Improve website performance, speed, and fix existing issues.',
+    tags:['Debugging','SEO','Performance'], color:'#ff8800' },
+];
+
+function ServiceCard({ icon, title, desc, tags, color, delay, isLight }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+      style={{ background: isLight?'#fff':'#0a0a0a',
+        border:`1px solid ${hov?color:'rgba(255,90,0,0.15)'}`,
+        borderRadius:'20px', padding:'clamp(1.5rem,3vw,2rem)',
+        boxShadow: hov?'0 20px 50px rgba(255,90,0,0.25)':'0 4px 20px rgba(0,0,0,0.15)',
+        transform: hov?'translateY(-10px)':'translateY(0)',
+        transition:'all 0.35s cubic-bezier(0.34,1.56,0.64,1)',
+        animation:`cardReveal 0.6s ease ${delay} both`,
+        position:'relative', overflow:'hidden', cursor:'default' }}>
+      <div style={{ position:'absolute', top:'-30px', right:'-30px', width:'100px', height:'100px',
+        borderRadius:'50%', background:`radial-gradient(circle,${color}33 0%,transparent 70%)`,
+        transition:'all 0.4s', transform: hov?'scale(2)':'scale(1)', pointerEvents:'none' }}/>
+      <div style={{ width:'56px', height:'56px', borderRadius:'16px',
+        background:`linear-gradient(135deg,${color},${color}bb)`,
+        display:'flex', alignItems:'center', justifyContent:'center',
+        fontSize:'1.8rem', marginBottom:'1.2rem',
+        boxShadow:`0 8px 20px ${color}44`,
+        transform: hov?'rotate(-6deg) scale(1.1)':'rotate(0) scale(1)',
+        transition:'transform 0.3s ease' }}>
+        {icon}
+      </div>
+      <h3 style={{ fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.05rem,2.5vw,1.25rem)',
+        fontWeight:700, marginBottom:'0.6rem',
+        background:`linear-gradient(135deg,${color},${color}cc)`,
+        WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
+        {title}
+      </h3>
+      <p style={{ color:isLight?'#666':'#999', fontSize:'clamp(0.85rem,1.8vw,0.95rem)',
+        lineHeight:1.7, marginBottom:'1.2rem' }}>{desc}</p>
+      <div style={{ display:'flex', flexWrap:'wrap', gap:'0.4rem' }}>
+        {tags.map(t=>(
+          <span key={t} style={{ background:`rgba(255,90,0,${isLight?'0.08':'0.12'})`,
+            color:isLight?'#cc3a00':'#ff7a30', padding:'0.2rem 0.65rem',
+            borderRadius:'20px', fontSize:'0.75rem',
+            border:'1px solid rgba(255,90,0,0.25)',
+            fontFamily:"'Fira Code',monospace", fontWeight:600 }}>{t}</span>
+        ))}
+      </div>
+      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'3px',
+        background:`linear-gradient(90deg,transparent,${color},transparent)`,
+        opacity: hov?1:0, transition:'opacity 0.3s ease' }}/>
+    </div>
+  );
+}
+
+function ServicesSection({ isLight }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+  useEffect(()=>{
+    const obs = new IntersectionObserver(([e])=>{ if(e.isIntersecting){ setVisible(true); obs.disconnect(); } },{threshold:0.1});
+    if(ref.current) obs.observe(ref.current);
+    return()=>obs.disconnect();
+  },[]);
+
+  return (
+    <section id="services" ref={ref} style={{ minHeight:'100vh',
+      padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)',
+      position:'relative',
+      opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)',
+      transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
+      <div style={{ textAlign:'center', marginBottom:'clamp(2.5rem,5vw,4rem)' }}>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00',
+          fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px',
+          textTransform:'uppercase', marginBottom:'0.6rem',
+          animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>
+          &lt;what_i_offer&gt;
+        </p>
+        <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif",
+          fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800,
+          background:'linear-gradient(135deg,#ff5a00,#ff8800)',
+          WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text',
+          position:'relative', paddingBottom:'18px',
+          animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
+          What I Offer
+          <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)',
+            width:'clamp(50px,8vw,80px)', height:'4px',
+            background:'linear-gradient(135deg,#ff5a00,#ff8800)',
+            borderRadius:'2px', display:'block' }}/>
+        </h2>
+        <p style={{ marginTop:'clamp(1.5rem,3vw,2rem)', color:isLight?'#666':'#888',
+          fontSize:'clamp(0.88rem,1.8vw,1.05rem)', maxWidth:'520px',
+          margin:'clamp(1.5rem,3vw,2rem) auto 0', lineHeight:1.7,
+          animation:visible?'fadeInUp 0.7s ease 0.3s both':'none', opacity:visible?undefined:0 }}>
+          From idea to launch — I build digital solutions that work.
+        </p>
+      </div>
+      <div className="services-grid" style={{ display:'grid',
+        gridTemplateColumns:'repeat(auto-fit,minmax(min(260px,100%),1fr))',
+        gap:'clamp(1.2rem,2.5vw,2rem)', maxWidth:'1100px', margin:'0 auto' }}>
+        {SERVICES.map((s,i)=>(
+          <ServiceCard key={s.title} {...s} isLight={isLight} delay={`${i*0.12}s`}/>
+        ))}
+      </div>
+      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)',
+        fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)',
+        fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>
+        &lt;/what_i_offer&gt;
+      </p>
     </section>
   );
 }
@@ -577,10 +713,7 @@ function SkillsSection({ isLight }) {
 ════════════════════════════════════════════════════════ */
 const PROJECTS = [
   { emoji:'🎨', image:'/portfolio-preview.png', title:'Portfolio Website',   desc:'A responsive personal portfolio showcasing my work and skills using modern web technologies.',             tags:['HTML','CSS','JavaScript','React','Nodejs','MongoDB'],     btn1:{label:'Live Demo',    href:'#'}, btn2:{label:'GitHub',     href:'https://github.com/somnathhake09/My-Portfolio'} },
-  { emoji:'🏰', image:'/shivaji-maharaj-website.png', title:'Chhatrapati Shivaji Maharaj Historical Website', desc:'A fully responsive historical website showcasing the life, legacy, forts, and Swarajya journey of Chhatrapati Shivaji Maharaj with modern UI and Marathi support.', tags:['HTML','CSS','JavaScript','Responsive Design','UI/UX','AI-Assisted Development'], btn1:{label:'Live Demo',href:'https://somnathhake09.github.io/Ch-Shivaji-Maharaj-/'}, btn2:{label:'GitHub',href:'https://github.com/somnathhake09/Ch-Shivaji-Maharaj-'} }//   { emoji:'🤖', image:'\ai-chatbot.png', title:'AI Chatbot',          desc:'Built an intelligent chatbot using Python and natural language processing for customer support.',           tags:['Python','NLP','AI'],            btn1:{label:'Try It',      href:'#'}, btn2:{label:'GitHub',     href:'#'} },
-//   { emoji:'🛒', image:'\e-commerce-platform.png', title:'E-Commerce Platform', desc:'Full-stack e-commerce website with payment integration, admin panel, and inventory management.',           tags:['React','Node.js','MongoDB'],    btn1:{label:'Live Demo',   href:'#'}, btn2:{label:'GitHub',     href:'#'} },
-//   { emoji:'📊', image:'\data-visualization.png', title:'Data Visualization',  desc:'Interactive dashboard for analyzing and visualizing complex datasets with real-time updates.',             tags:['D3.js','React','API'],          btn1:{label:'View Demo',   href:'#'}, btn2:{label:'GitHub',     href:'#'} },
-//   { emoji:'🎮', image:'\game-development.png', title:'Game Development',    desc:'2D platformer game built with Unity featuring custom physics, animations, and level design.',              tags:['Unity','C#','Game Design'],     btn1:{label:'Play Now',    href:'#'}, btn2:{label:'GitHub',     href:'#'} },
+  { emoji:'🏰', image:'/shivaji-maharaj-website.png', title:'Chhatrapati Shivaji Maharaj Historical Website', desc:'A fully responsive historical website showcasing the life, legacy, forts, and Swarajya journey of Chhatrapati Shivaji Maharaj with modern UI and Marathi support.', tags:['HTML','CSS','JavaScript','Responsive Design','UI/UX','AI-Assisted Development'], btn1:{label:'Live Demo',href:'https://somnathhake09.github.io/Ch-Shivaji-Maharaj-/'}, btn2:{label:'GitHub',href:'https://github.com/somnathhake09/Ch-Shivaji-Maharaj-'} },
 ];
 const FILTER_MAP = { 'All':()=>true, 'React':p=>p.tags.includes('React'), 'Python':p=>p.tags.includes('Python'), 'JavaScript':p=>p.tags.includes('JavaScript'), 'AI':p=>p.tags.includes('AI') };
 
@@ -648,9 +781,9 @@ function ProjectsSection({ isLight }) {
   },[]);
   const filtered=PROJECTS.filter(FILTER_MAP[filter]||(() =>true));
   return (
-    <section id="projects" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':' translateY(60px)', transition:'opacity 0.8s ease, transform 0.8s ease' }}>
+    <section id="projects" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(2rem,4vw,3.5rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;my_projects&gt;</p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           My Projects
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', width:'clamp(50px,8vw,80px)', height:'4px', background:'linear-gradient(135deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block' }}/>
@@ -664,7 +797,7 @@ function ProjectsSection({ isLight }) {
         {filtered.map((p,i)=><ProjectCard key={p.title} {...p} isLight={isLight} delay={`${i*0.1}s`}/>)}
       </div>
       {filtered.length===0 && <div style={{ textAlign:'center', padding:'4rem', color:isLight?'#999':'#555', fontFamily:"'Fira Code',monospace" }}>// no projects match this filter</div>}
-      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}></p>
+      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>&lt;/my_projects&gt;</p>
     </section>
   );
 }
@@ -740,9 +873,9 @@ function ContactSection({ isLight }) {
   const handleSubmit=e=>{ e.preventDefault(); const errs=validate(); if(Object.keys(errs).length){ setErrors(errs); return; } setStatus('sending'); setTimeout(()=>{ setStatus('success'); setForm({name:'',email:'',subject:'',message:''}); setTimeout(()=>setStatus('idle'),4000); },1800); };
 
   return (
-    <section id="contact" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':' translateY(60px)', transition:'opacity 0.8s ease, transform 0.8s ease' }}>
+    <section id="contact" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(2rem,4vw,3.5rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;get_in_touch&gt;</p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           Get In Touch
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', width:'clamp(50px,8vw,80px)', height:'4px', background:'linear-gradient(135deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block' }}/>
@@ -821,8 +954,163 @@ function ContactSection({ isLight }) {
           {SOCIALS.map((s,i)=><SocialLink key={s.title} href={s.href} title={s.title} isLight={isLight} delay={`${0.7+i*0.08}s`}>{s.icon}</SocialLink>)}
         </div>
       </div>
-      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}></p>
+      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>&lt;/get_in_touch&gt;</p>
     </section>
+  );
+}
+
+/* ════════════════════════════════════════════════════════
+   CHATBOT
+════════════════════════════════════════════════════════ */
+const QUICK_REPLIES = [
+  { label:'💼 What services do you offer?', key:'services' },
+  { label:'🚀 Show your projects',          key:'projects' },
+  { label:'📞 How can I contact you?',      key:'contact'  },
+  { label:'💰 What are your charges?',      key:'pricing'  },
+];
+
+const BOT_REPLIES = {
+  services: "I offer website development, landing pages, portfolio websites, and bug fixing. Let me know what you need! 💻",
+  projects: "You can check my projects in the Projects section above — each one has a live demo link! 🚀",
+  contact:  "You can reach me via WhatsApp, Email, or LinkedIn from the Contact section below. I usually reply within 24 hours! 📬",
+  pricing:  "My pricing depends on your project requirements. Let's discuss on WhatsApp — I'll give you the best deal! 💬",
+};
+
+function Chatbot({ isLight }) {
+  const [open,    setOpen]    = useState(false);
+  const [msgs,    setMsgs]    = useState([{ from:'bot', text:"Hi! I'm Somnath's assistant 👋\nHow can I help you today?", whatsapp:true }]);
+  const [typing,  setTyping]  = useState(false);
+  const [input,   setInput]   = useState('');
+  const [pulse,   setPulse]   = useState(true);
+  const bottomRef = useRef(null);
+
+  useEffect(()=>{ bottomRef.current?.scrollIntoView({ behavior:'smooth' }); },[msgs, typing]);
+  useEffect(()=>{ const t=setTimeout(()=>setPulse(false),4000); return()=>clearTimeout(t); },[]);
+
+  const sendMsg = (text, key) => {
+    setMsgs(m=>[...m, { from:'user', text }]);
+    setTyping(true);
+    setTimeout(()=>{
+      setTyping(false);
+      const reply = key ? BOT_REPLIES[key] : "I'm not sure about that. Please use the quick replies or contact Somnath directly! 😊";
+      setMsgs(m=>[...m, { from:'bot', text: reply }]);
+    }, 1200);
+  };
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const txt = input.trim();
+    setInput('');
+    const matched = Object.keys(BOT_REPLIES).find(k => txt.toLowerCase().includes(k));
+    sendMsg(txt, matched||null);
+  };
+
+  return (
+    <>
+      {open && (
+        <div style={{ position:'fixed', bottom:'5.5rem', right:'1.5rem', zIndex:10000,
+          width:'clamp(300px,90vw,370px)', borderRadius:'20px', overflow:'hidden',
+          boxShadow:'0 20px 60px rgba(0,0,0,0.5)', animation:'fadeInUp 0.3s ease',
+          border:'1px solid rgba(255,90,0,0.3)' }}>
+          <div style={{ background:'linear-gradient(135deg,#ff5a00,#ff8800)', padding:'1rem 1.2rem',
+            display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+              <div style={{ width:'38px', height:'38px', borderRadius:'50%', background:'rgba(255,255,255,0.25)',
+                display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.2rem' }}>🤖</div>
+              <div>
+                <div style={{ color:'#fff', fontWeight:700, fontSize:'0.95rem', fontFamily:"'Outfit',sans-serif" }}>Somnath's Bot</div>
+                <div style={{ color:'rgba(255,255,255,0.85)', fontSize:'0.72rem', display:'flex', alignItems:'center', gap:'4px' }}>
+                  <span style={{ width:'7px', height:'7px', borderRadius:'50%', background:'#90EE90', display:'inline-block' }}/>
+                  Online
+                </div>
+              </div>
+            </div>
+            <button onClick={()=>setOpen(false)} style={{ background:'none', border:'none', color:'#fff', fontSize:'1.3rem', cursor:'pointer', opacity:0.85 }}>✕</button>
+          </div>
+
+          <div style={{ background:isLight?'#f9f9f9':'#0d0d0d', height:'300px', overflowY:'auto', padding:'1rem', display:'flex', flexDirection:'column', gap:'10px' }}>
+            {msgs.map((m,i)=>(
+              <div key={i} style={{ display:'flex', justifyContent:m.from==='user'?'flex-end':'flex-start' }}>
+                {m.from==='bot' && <div style={{ width:'28px', height:'28px', borderRadius:'50%', background:'linear-gradient(135deg,#ff5a00,#ff8800)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'0.85rem', flexShrink:0, marginRight:'8px', alignSelf:'flex-end' }}>🤖</div>}
+                <div style={{ maxWidth:'78%', padding:'0.6rem 0.9rem', borderRadius: m.from==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px',
+                  background: m.from==='user'?'linear-gradient(135deg,#ff5a00,#ff8800)':(isLight?'#fff':'#1a1a1a'),
+                  color: m.from==='user'?'#fff':(isLight?'#333':'#eee'),
+                  fontSize:'0.88rem', lineHeight:1.5, fontFamily:"'Outfit',sans-serif",
+                  boxShadow:'0 2px 8px rgba(0,0,0,0.1)', whiteSpace:'pre-line',
+                  border: m.from==='bot'?'1px solid rgba(255,90,0,0.15)':'none' }}>
+                  {m.text}
+                  {m.whatsapp && (
+                    <a href="https://wa.me/918767750962" target="_blank" rel="noreferrer"
+                      style={{ display:'flex', alignItems:'center', gap:'6px', marginTop:'8px',
+                        background:'#25D366', color:'#fff', borderRadius:'12px', padding:'0.4rem 0.8rem',
+                        textDecoration:'none', fontSize:'0.78rem', fontWeight:700, width:'fit-content',
+                        boxShadow:'0 2px 8px rgba(37,211,102,0.4)' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26C2.001 6.44 6.437 2.006 11.889 2.006c2.64 0 5.122 1.03 6.988 2.898A9.825 9.825 0 0 1 21.77 11.9c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                      Quick Discussion on WhatsApp
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+            {typing && (
+              <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
+                <div style={{ width:'28px', height:'28px', borderRadius:'50%', background:'linear-gradient(135deg,#ff5a00,#ff8800)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'0.85rem' }}>🤖</div>
+                <div style={{ background:isLight?'#fff':'#1a1a1a', border:'1px solid rgba(255,90,0,0.15)', borderRadius:'16px 16px 16px 4px', padding:'0.6rem 1rem', display:'flex', gap:'5px', alignItems:'center' }}>
+                  {[0,1,2].map(i=>(
+                    <span key={i} style={{ width:'7px', height:'7px', borderRadius:'50%', background:'#ff5a00', display:'inline-block',
+                      animation:`typingDot 1.2s ease ${i*0.2}s infinite` }}/>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div ref={bottomRef}/>
+          </div>
+
+          <div style={{ background:isLight?'#f3f3f3':'#111', padding:'0.6rem 0.8rem', display:'flex', flexWrap:'wrap', gap:'6px', borderTop:'1px solid rgba(255,90,0,0.1)' }}>
+            {QUICK_REPLIES.map(q=>(
+              <button key={q.key} onClick={()=>sendMsg(q.label, q.key)}
+                style={{ background:'transparent', border:'1px solid rgba(255,90,0,0.4)', color:isLight?'#cc3a00':'#ff7a30',
+                  borderRadius:'20px', padding:'0.3rem 0.7rem', fontSize:'0.75rem', cursor:'pointer', fontFamily:"'Outfit',sans-serif",
+                  transition:'all 0.2s', whiteSpace:'nowrap' }}
+                onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,90,0,0.15)'; }}
+                onMouseLeave={e=>{ e.currentTarget.style.background='transparent'; }}>
+                {q.label}
+              </button>
+            ))}
+          </div>
+
+          <div style={{ background:isLight?'#fff':'#0d0d0d', padding:'0.7rem 0.8rem', display:'flex', gap:'8px', borderTop:'1px solid rgba(255,90,0,0.1)' }}>
+            <input value={input} onChange={e=>setInput(e.target.value)}
+              onKeyDown={e=>e.key==='Enter' && handleSend()}
+              placeholder="Type a message..."
+              style={{ flex:1, background:isLight?'#f5f5f5':'#1a1a1a', border:'1px solid rgba(255,90,0,0.2)', borderRadius:'20px',
+                padding:'0.5rem 1rem', color:isLight?'#333':'#eee', fontSize:'0.88rem', outline:'none', fontFamily:"'Outfit',sans-serif" }}/>
+            <button onClick={handleSend}
+              style={{ width:'36px', height:'36px', borderRadius:'50%', background:'linear-gradient(135deg,#ff5a00,#ff8800)',
+                border:'none', color:'#fff', fontSize:'1rem', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center',
+                flexShrink:0, boxShadow:'0 4px 12px rgba(255,90,0,0.4)' }}>
+              ➤
+            </button>
+          </div>
+        </div>
+      )}
+
+      <button onClick={()=>{ setOpen(o=>!o); setPulse(false); }}
+        style={{ position:'fixed', bottom:'2rem', right:'5rem', zIndex:10000,
+          width:'52px', height:'52px', borderRadius:'50%', border:'none',
+          background:'linear-gradient(135deg,#ff5a00,#ff8800)', color:'#fff',
+          fontSize:'1.5rem', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center',
+          boxShadow:'0 6px 24px rgba(255,90,0,0.5)', transition:'all 0.3s ease',
+          animation: open ? 'none' : 'chatFloat 2.5s ease-in-out infinite',
+          transform: open ? 'rotate(45deg) scale(1.1)' : 'scale(1)' }}>
+        {open ? '✕' : '💬'}
+        {pulse && !open && (
+          <span style={{ position:'absolute', top:'-2px', right:'-2px', width:'14px', height:'14px',
+            borderRadius:'50%', background:'#ff3a00', border:'2px solid #000',
+            animation:'pulseDot 1.5s ease infinite' }}/>
+        )}
+      </button>
+    </>
   );
 }
 
@@ -838,9 +1126,8 @@ export default function PortfolioSPA() {
     setIsLight(v=>{ const n=!v; try{localStorage.setItem('theme',n?'light':'dark');}catch{} document.body.className=n?'light-mode':''; return n; });
   },[]);
 
-  /* Scroll tracking — updates navbar active link */
   useEffect(()=>{
-    const sections = ['home','about','skills','projects','contact'];
+    const sections = ['home','about','skills','services','projects','contact'];
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
       const scrollY = window.scrollY + window.innerHeight * 0.35;
@@ -862,8 +1149,12 @@ export default function PortfolioSPA() {
         <HomeSection    isLight={isLight}/>
         <AboutSection   isLight={isLight}/>
         <SkillsSection  isLight={isLight}/>
+        <ServicesSection isLight={isLight}/>
         <ProjectsSection isLight={isLight}/>
         <ContactSection isLight={isLight}/>
+
+        {/* ── CHATBOT ── */}
+        <Chatbot isLight={isLight}/>
 
         {/* ── SCROLL TO TOP BUTTON ── */}
         <button
