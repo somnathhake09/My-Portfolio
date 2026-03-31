@@ -180,7 +180,7 @@ function BgAnimation({ isLight }) {
 
   useEffect(() => {
     const el = rainRef.current; if (!el) return;
-    const tokens = ['<','>','{','}','[]','();','const','let','if','fn','=>','&&','0x','//'];
+    const tokens = ['<','>','{','}','[]','();','const','let','if','for','=>','&&','0x','//'];
     const go = () => {
       const c = document.createElement('div');
       Object.assign(c.style, {
@@ -463,7 +463,7 @@ function AboutSection({ isLight }) {
   return (
     <section id="about" ref={ref} style={{ minHeight:'100vh', padding:'clamp(5.5rem,13vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(2.5rem,6vw,4rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;about_me&gt;</p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           About Me
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', height:'4px', background:'linear-gradient(90deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block', animation:visible?'underlinePop 0.8s ease 0.4s both':'none' }}/>
@@ -556,7 +556,7 @@ function SkillsSection({ isLight }) {
   return (
     <section id="skills" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(1.5rem,3vw,2.5rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;my_skills&gt;</p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           My Skills
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', width:'clamp(50px,8vw,80px)', height:'4px', background:'linear-gradient(135deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block' }}/>
@@ -580,7 +580,7 @@ function SkillsSection({ isLight }) {
       <div className="skills-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(300px,100%),1fr))', gap:'clamp(1.2rem,2.5vw,2rem)', maxWidth:'1200px', margin:'0 auto' }}>
         {SKILLS.map((s,i)=><SkillCard key={s.title} {...s} isLight={isLight} triggered={triggered} delay={`${0.1+i*0.1}s`}/>)}
       </div>
-      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>&lt;/my_skills&gt;</p>
+      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}></p>
     </section>
   );
 }
@@ -671,7 +671,6 @@ function ServicesSection({ isLight }) {
           fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px',
           textTransform:'uppercase', marginBottom:'0.6rem',
           animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>
-          &lt;what_i_offer&gt;
         </p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif",
           fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800,
@@ -702,7 +701,6 @@ function ServicesSection({ isLight }) {
       <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)',
         fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)',
         fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>
-        &lt;/what_i_offer&gt;
       </p>
     </section>
   );
@@ -783,7 +781,7 @@ function ProjectsSection({ isLight }) {
   return (
     <section id="projects" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(2rem,4vw,3.5rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;my_projects&gt;</p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           My Projects
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', width:'clamp(50px,8vw,80px)', height:'4px', background:'linear-gradient(135deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block' }}/>
@@ -797,7 +795,20 @@ function ProjectsSection({ isLight }) {
         {filtered.map((p,i)=><ProjectCard key={p.title} {...p} isLight={isLight} delay={`${i*0.1}s`}/>)}
       </div>
       {filtered.length===0 && <div style={{ textAlign:'center', padding:'4rem', color:isLight?'#999':'#555', fontFamily:"'Fira Code',monospace" }}>// no projects match this filter</div>}
-      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>&lt;/my_projects&gt;</p>
+      {/* ── Fiverr Note ── */}
+<div style={{ textAlign:'center', marginTop:'clamp(2rem,4vw,3rem)', padding:'clamp(1.2rem,3vw,2rem)', background:isLight?'#fff':'#0a0a0a', borderRadius:'16px', border:'1px solid rgba(29,191,115,0.3)', maxWidth:'600px', margin:'clamp(2rem,4vw,3rem) auto 0', boxShadow:isLight?'0 4px 20px rgba(0,0,0,0.08)':'0 4px 20px rgba(0,0,0,0.4)' }}>
+  <p style={{ color:isLight?'#555':'#aaa', fontSize:'clamp(0.88rem,1.8vw,1rem)', marginBottom:'1rem', lineHeight:1.6 }}>
+    💼 For professional and secure service, you can also hire me on Fiverr.
+  </p>
+  <a href="https://www.fiverr.com/sh_somnath_09" target="_blank" rel="noreferrer"
+    style={{ display:'inline-flex', alignItems:'center', gap:'8px', background:'#1DBF73', color:'#fff', padding:'0.65rem 1.5rem', borderRadius:'50px', textDecoration:'none', fontWeight:700, fontSize:'0.95rem', fontFamily:"'Outfit',sans-serif", boxShadow:'0 6px 20px rgba(29,191,115,0.4)', transition:'all 0.3s ease' }}
+    onMouseEnter={e=>{ e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.boxShadow='0 12px 30px rgba(29,191,115,0.5)'; }}
+    onMouseLeave={e=>{ e.currentTarget.style.transform=''; e.currentTarget.style.boxShadow='0 6px 20px rgba(29,191,115,0.4)'; }}>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M23.004 15.588a.995.995 0 1 0 .002-1.99.995.995 0 0 0-.002 1.99zm-.996-3.705h-1.33C19.948 7.724 16.187 4 11.5 4H7V2H5v2H2v2h3v9.588H3.995a.995.995 0 1 0 0 1.99h1.005V20h2v-2.422h4.5c4.687 0 8.448-3.724 8.178-8.295h1.33c.55 0 .997-.447.997-.997s-.447-.997-.997-.997zM8 17.578V6h3.5c3.584 0 6.5 2.916 6.5 6.5S15.084 19 11.5 19H8v-1.422z"/></svg>
+    Hire Me on Fiverr
+  </a>
+</div>
+      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}></p>
     </section>
   );
 }
@@ -815,6 +826,7 @@ const SOCIALS = [
   { href:'https://linkedin.com/in/somnath-hake09', title:'LinkedIn', icon:'in' },
   { href:'https://github.com/somnathhake09', title:'GitHub', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg> },
   { href:'https://wa.me/918767750962?text=Hello%20I%20liked%20your%20portfolio.%20Can%20you%20create%20a%20website%20for%20me?', title:'WhatsApp', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26C2.001 6.44 6.437 2.006 11.889 2.006c2.64 0 5.122 1.03 6.988 2.898A9.825 9.825 0 0 1 21.77 11.9c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg> },
+  { href:'https://www.fiverr.com/sh_somnath_09', title:'Fiverr', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.004 15.588a.995.995 0 1 0 .002-1.99.995.995 0 0 0-.002 1.99zm-.996-3.705h-1.33C19.948 7.724 16.187 4 11.5 4H7V2H5v2H2v2h3v9.588H3.995a.995.995 0 1 0 0 1.99h1.005V20h2v-2.422h4.5c4.687 0 8.448-3.724 8.178-8.295h1.33c.55 0 .997-.447.997-.997s-.447-.997-.997-.997zM8 17.578V6h3.5c3.584 0 6.5 2.916 6.5 6.5S15.084 19 11.5 19H8v-1.422z"/></svg> },
   { href:'#', title:'Twitter/X', icon:'𝕏' },
 ];
 
@@ -875,7 +887,7 @@ function ContactSection({ isLight }) {
   return (
     <section id="contact" ref={ref} style={{ minHeight:'100vh', padding:'clamp(6rem,12vw,9rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,5rem)', position:'relative', opacity:visible?1:0, transform:visible?'translateY(0)':'translateY(60px)', transition:'opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)' }}>
       <div style={{ textAlign:'center', marginBottom:'clamp(2rem,4vw,3.5rem)' }}>
-        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}>&lt;get_in_touch&gt;</p>
+        <p style={{ fontFamily:"'Fira Code',monospace", color:'#ff5a00', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'0.6rem', animation:visible?'fadeInUp 0.7s ease 0.1s both':'none', opacity:visible?undefined:0 }}></p>
         <h2 style={{ display:'inline-block', fontFamily:"'Outfit',sans-serif", fontSize:'clamp(1.8rem,5vw,2.8rem)', fontWeight:800, background:'linear-gradient(135deg,#ff5a00,#ff8800)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', position:'relative', paddingBottom:'18px', animation:visible?'fadeInUp 0.7s ease 0.2s both':'none', opacity:visible?undefined:0 }}>
           Get In Touch
           <span style={{ position:'absolute', bottom:0, left:'50%', transform:'translateX(-50%)', width:'clamp(50px,8vw,80px)', height:'4px', background:'linear-gradient(135deg,#ff5a00,#ff8800)', borderRadius:'2px', display:'block' }}/>
@@ -954,7 +966,7 @@ function ContactSection({ isLight }) {
           {SOCIALS.map((s,i)=><SocialLink key={s.title} href={s.href} title={s.title} isLight={isLight} delay={`${0.7+i*0.08}s`}>{s.icon}</SocialLink>)}
         </div>
       </div>
-      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}>&lt;/get_in_touch&gt;</p>
+      <p style={{ textAlign:'center', marginTop:'clamp(2.5rem,5vw,4rem)', fontFamily:"'Fira Code',monospace", color:'rgba(255,90,0,0.4)', fontSize:'clamp(0.68rem,1.5vw,0.85rem)', letterSpacing:'3px', textTransform:'uppercase' }}></p>
     </section>
   );
 }
