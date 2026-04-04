@@ -3705,7 +3705,7 @@ function Chatbot({ isLight }) {
           transform: open ? "rotate(45deg) scale(1.1)" : "scale(1)",
         }}
       >
-        {open ? '✕' : <img src="/somnath.jpg" alt="Somnath" style={{ width:'100%', height:'100%', objectFit:'cover', borderRadius:'50%' }}/>}
+        {open ? '✕' : <img src="/somnath.jpeg" alt="Somnath" style={{ width:'100%', height:'100%', objectFit:'cover', borderRadius:'50%' }}/>}
         {pulse && !open && (
           <span
             style={{
