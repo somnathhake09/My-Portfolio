@@ -2481,7 +2481,7 @@ function ProjectsSection({ isLight }) {
             e.currentTarget.style.boxShadow = "0 6px 20px rgba(29,191,115,0.4)";
           }}
         >
-          <span style={{fontWeight:900, fontSize:'1.1rem', fontFamily:'serif', letterSpacing:'-1px', lineHeight:1}}>fi</span>
+          <span style={{fontWeight:900, fontSize:'1.1rem', fontFamily:'serif', letterSpacing:'-1px', lineHeight:1}}>Fi</span>
           Hire Me on Fiverr
         </a>
       </div>
@@ -2539,7 +2539,7 @@ const SOCIALS = [
   {
     href: 'https://www.fiverr.com/somnathhake09',
     title: 'Fiverr',
-    icon: <span style={{fontWeight:900, fontSize:'1.1rem', fontFamily:'serif', letterSpacing:'-1px'}}>fi</span>
+    icon: "Fi",
   },
   { href: "#", title: "Twitter/X", icon: "𝕏" },
 ];
@@ -3705,7 +3705,7 @@ function Chatbot({ isLight }) {
           transform: open ? "rotate(45deg) scale(1.1)" : "scale(1)",
         }}
       >
-        {open ? "✕" : "💬"}
+        {open ? '✕' : <img src="/somnath.jpg" alt="Somnath" style={{ width:'100%', height:'100%', objectFit:'cover', borderRadius:'50%' }}/>}
         {pulse && !open && (
           <span
             style={{
