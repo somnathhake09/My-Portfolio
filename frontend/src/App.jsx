@@ -1295,44 +1295,43 @@ function AboutSection({ isLight }) {
 }
 
 /* ════════════════════════════════════════════════════════
-   SECTION 3: SKILLS
+  SECTION 3: SKILLS
 ════════════════════════════════════════════════════════ */
 const SKILLS = [
   {
     icon: "💻",
     title: "Web Development",
-    subtitle: "Building modern, responsive web apps",
+    subtitle: "Building responsive websites and web interfaces",
     tags: ["HTML", "CSS", "JavaScript", "React"],
-    pct: 85,
+    pct: 70,
   },
   {
-    icon: "⚙️",
-    title: "Programming",
-    subtitle: "Core languages for backend & systems",
-    tags: ["Python", "C++"],
-    pct: 80,
+    icon: "🐍",
+    title: "Python",
+    subtitle: "Learning Python programming and problem solving",
+    tags: ["Python", "Basic Programming", "OOP"],
+    pct: 70,
+  },
+  {
+    icon: "📊",
+    title: "Data Analytics",
+    subtitle: "Learning data analysis and visualization",
+    tags: ["Excel", "SQL", "Tableau", "Data Visualization"],
+    pct: 50,
   },
   {
     icon: "🤖",
-    title: "AI-Assisted Website Development",
-    subtitle:
-      "Using AI to accelerate web development and improve design quality.",
-    tags: ["AI Tools"],
-    pct: 85,
-  },
-  {
-    icon: "🗄️",
-    title: "Database",
-    subtitle: "Relational & NoSQL data management",
-    tags: ["MySQL", "MongoDB Altas"],
-    pct: 70,
+    title: "AI-Assisted Development",
+    subtitle: "Using AI tools to accelerate development and build projects",
+    tags: ["AI Tools", "Prompting", "AI-Assisted Coding"],
+    pct: 75,
   },
   {
     icon: "🔗",
     title: "Version Control",
-    subtitle: "Collaborative development & CI/CD",
-    tags: ["Git", "GitHub"],
-    pct: 85,
+    subtitle: "Managing projects with Git and GitHub",
+    tags: ["Git", "GitHub", "GitHub Desktop"],
+    pct: 70,
   },
 ];
 
