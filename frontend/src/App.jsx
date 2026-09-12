@@ -2008,19 +2008,37 @@ const PROJECTS = [
     emoji: "🎨",
     image: "/portfolio-preview.png",
     title: "Portfolio Website",
-    desc: "A responsive personal portfolio showcasing my work and skills using modern web technologies.",
-    tags: ["HTML", "CSS", "JavaScript", "React", "Nodejs", "MongoDB"],
-    btn1: { label: "Live Demo", href: "#" },
+    desc: "A responsive personal portfolio showcasing my skills, projects, and experience with a modern user interface.",
+    tags: ["HTML", "CSS", "JavaScript", "React", "Node.js", "MongoDB"],
+    btn1: {
+      label: "Live Demo",
+      href: "https://my-portfolio09-beta.vercel.app/",
+    },
     btn2: {
       label: "GitHub",
       href: "https://github.com/somnathhake09/My-Portfolio",
     },
   },
   {
+    emoji: "🌦️",
+    image: "/weather-app-preview.png",
+    title: "React Weather App",
+    desc: "A weather application using an API to display current weather information with a responsive interface.",
+    tags: ["React","JavaScript","REST API","OpenWeatherMap API","Responsive Design"],
+    btn1: {
+      label: "Live Demo",
+      href: "https://weather-app-seven-fawn-35.vercel.app/",
+    },
+    btn2: {
+      label: "GitHub",
+      href: "https://github.com/somnathhake09/weather-app",
+    },
+  },
+  {
     emoji: "🏰",
     image: "/shivaji-maharaj-website.png",
     title: "Chhatrapati Shivaji Maharaj Historical Website",
-    desc: "A fully responsive historical website showcasing the life, legacy, forts, and Swarajya journey of Chhatrapati Shivaji Maharaj with modern UI and Marathi support.",
+    desc: "A responsive historical website showcasing the life, legacy, forts, and Swarajya journey of Chhatrapati Shivaji Maharaj with Marathi support.",
     tags: [
       "HTML",
       "CSS",
