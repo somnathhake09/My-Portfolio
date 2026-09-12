@@ -656,11 +656,13 @@ function useTyping(texts, speed = 100, del = 50, pause = 2000) {
 function HomeSection({ isLight }) {
   const heroRef = useRef(null);
   const typed = useTyping([
-    "Web & Python Developer",
+    "Software Developer",
+    "Web Development Enthusiast",
+    "Data Analytics Learner",
+    "AI-Assisted Developer",
     "Creative Thinker",
     "Problem Solver",
     "Freelancer",
-    "AI Tools Expert",
   ]);
   const binary = useRef(
     Array.from({ length: 3200 }, (_, i) =>
@@ -863,7 +865,7 @@ function HomeSection({ isLight }) {
             fontWeight: 400,
           }}
         >
-          Student &nbsp;|&nbsp;{" "}
+          B.Voc Software Development Graduate &nbsp;|&nbsp;{" "}
           <span
             style={{
               fontFamily: "'Fira Code',monospace",
@@ -888,11 +890,11 @@ function HomeSection({ isLight }) {
             animation: "fadeInUp 0.8s ease 0.55s both",
           }}
         >
-          <HeroBtn href="#contact" primary>
-            Get In Touch
+          <HeroBtn href="#projects" primary>
+            View Projects
           </HeroBtn>
           <HeroBtn href="assets/resume.pdf" download>
-            Download CV
+            Download Resume
           </HeroBtn>
         </div>
 
@@ -1006,7 +1008,7 @@ const INFO_ITEMS = [
   {
     icon: "🎓",
     label: "Education",
-    value: "Bvoc (Software Development) Student",
+    value: "Bvoc (Software Development), Savitribai Phule Pune University",
   },
 ];
 
