@@ -865,7 +865,7 @@ function HomeSection({ isLight }) {
             fontWeight: 400,
           }}
         >
-          B.Voc Software Development Graduate &nbsp;|&nbsp;{" "}
+          Software Developer &nbsp;|&nbsp;{" "}
           <span
             style={{
               fontFamily: "'Fira Code',monospace",
