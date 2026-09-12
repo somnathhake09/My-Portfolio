@@ -1008,7 +1008,7 @@ const INFO_ITEMS = [
   {
     icon: "🎓",
     label: "Education",
-    value: "Bvoc (Software Development), Savitribai Phule Pune University",
+    value:"B.Voc Software Development Graduate, Savitribai Phule Pune University | CGPA: 8.0 | 2023–2026",
   },
 ];
 
@@ -1207,7 +1207,16 @@ function AboutSection({ isLight }) {
             >
               {"</developer>"}
             </div>
-            👨‍💻
+            <img
+            src="/somnath2.jpeg"
+            alt="Somnath Hake"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "20px",
+  }}
+/>
           </div>
         </div>
 
@@ -1240,7 +1249,7 @@ function AboutSection({ isLight }) {
               backgroundClip: "text",
             }}
           >
-            Hello! I'm a Student Developer
+            Hello! I'm a Software Developer
           </h3>
           <p
             style={{
@@ -1250,10 +1259,10 @@ function AboutSection({ isLight }) {
               lineHeight: 1.9,
             }}
           >
-            I'm a passionate student with a love for technology and innovation.
-            Currently pursuing my degree in BVOC Software Devlopment, I spend my
-            time learning new technologies, building projects, and constantly
-            pushing myself to grow.
+            I'm a passionate software developer with a strong interest in web
+            development, Python, data analytics, and AI-assisted development.
+            I enjoy building practical projects, learning new technologies, and
+            turning ideas into useful digital solutions.
           </p>
           <p
             style={{
