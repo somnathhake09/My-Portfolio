@@ -2211,7 +2211,7 @@ function ProjectCard({
             letterSpacing: "1px",
           }}
         >
-          // project
+          {/* project */}
         </div>
       </div>
       <div
@@ -2449,7 +2449,7 @@ function ProjectsSection({ isLight }) {
             fontFamily: "'Fira Code',monospace",
           }}
         >
-          // no projects match this filter
+          {/* no projects match this filter */}
         </div>
       )}
 
@@ -2966,7 +2966,7 @@ function ContactSection({ isLight }) {
                 opacity: 0.7,
               }}
             >
-              // send_message()
+              {/* send_message() */}
             </p>
             {status === "success" ? (
               <div
@@ -3188,7 +3188,7 @@ function ContactSection({ isLight }) {
                 marginBottom: "0.7rem",
               }}
             >
-              // response_time
+              {/* response_time */}
             </h4>
             {[
               { ch: "📧", label: "Email", val: "< 24 hours" },
@@ -3245,7 +3245,6 @@ function ContactSection({ isLight }) {
                 marginBottom: "0.9rem",
               }}
             >
-              // quick_links
             </h4>
             {[
               { label: "Download CV", href: "assets/resume.pdf", icon: "📄" },
