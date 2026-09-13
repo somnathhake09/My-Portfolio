@@ -1652,7 +1652,7 @@ function SkillsSection({ isLight }) {
             { label: "Skills", val: `${SKILLS.length}` },
             { label: "Avg Proficiency", val: `${avgPct}%` },
             { label: "Top Skill", val: "Problem Solving" },
-            { label: "Currently", val: "Learning React and Python" },
+            { label: "Currently", val: "Learning Data science" },
           ].map((s, i) => (
             <div
               key={i}
@@ -2035,27 +2035,28 @@ const PROJECTS = [
     },
   },
   {
-    emoji: "🏰",
-    image: "/shivaji-maharaj-website.png",
-    title: "Chhatrapati Shivaji Maharaj Historical Website",
-    desc: "A responsive historical website showcasing the life, legacy, forts, and Swarajya journey of Chhatrapati Shivaji Maharaj with Marathi support.",
-    tags: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Responsive Design",
-      "UI/UX",
-      "AI-Assisted Development",
-    ],
-    btn1: {
-      label: "Live Demo",
-      href: "https://somnathhake09.github.io/Ch-Shivaji-Maharaj-/",
-    },
-    btn2: {
-      label: "GitHub",
-      href: "https://github.com/somnathhake09/Ch-Shivaji-Maharaj-",
-    },
+  emoji: "🏰",
+  image: "/shivaji-maharaj-website.png",
+  title: "Chhatrapati Shivaji Maharaj Historical Website",
+  desc: "A responsive historical website showcasing the life, legacy, forts, and Swarajya journey of Chhatrapati Shivaji Maharaj with Marathi support.",
+  tags: [
+    "React",
+    "Vite",
+    "JavaScript",
+    "Responsive Design",
+    "UI/UX",
+    "Vercel",
+    "AI-Assisted Development",
+  ],
+  btn1: {
+    label: "Live Demo",
+    href: "https://ch-shivaji-maharaj.vercel.app/",
   },
+  btn2: {
+    label: "GitHub",
+    href: "https://github.com/somnathhake09/Ch-Shivaji-Maharaj-",
+  },
+},
 ];
 const FILTER_MAP = {
   All: () => true,
