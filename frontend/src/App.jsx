@@ -2536,7 +2536,25 @@ const INFO_CARDS = [
   {
     icon: "📍",
     title: "Location",
-    value: "Old Sangvi, Pune-411027, Maharashtra",
+    value: "Pune, Maharashtra",
+  },
+  {
+    icon: "💼",
+    title: "LinkedIn",
+    value: "linkedin.com/in/somnath-hake09",
+    link: "https://linkedin.com/in/somnath-hake09",
+  },
+  {
+    icon: "🐙",
+    title: "GitHub",
+    value: "github.com/somnathhake09",
+    link: "https://github.com/somnathhake09",
+  },
+  {
+    icon: "🌐",
+    title: "Portfolio",
+    value: "my-portfolio09.vercel.app",
+    link: "https://my-portfolio09.vercel.app",
   },
 ];
 const SOCIALS = [
@@ -2799,20 +2817,17 @@ function ContactSection({ isLight }) {
       setErrors((err) => ({ ...err, [e.target.name]: undefined }));
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length) {
-      setErrors(errs);
-      return;
-    }
-    setStatus("sending");
-    setTimeout(() => {
-      setStatus("success");
-      setForm({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setStatus("idle"), 4000);
-    }, 1800);
-  };
+  e.preventDefault();
 
+  const errs = validate();
+  if (Object.keys(errs).length) {
+    setErrors(errs);
+    return;
+  }
+
+  setStatus("success");
+  setForm({ name: "", email: "", subject: "", message: "" });
+};
   return (
     <section
       id="contact"
@@ -2962,27 +2977,43 @@ function ContactSection({ isLight }) {
                 }}
               >
                 <div style={{ fontSize: "3.5rem", marginBottom: "1rem" }}>
-                  ✅
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "'Outfit',sans-serif",
-                    fontSize: "1.4rem",
-                    fontWeight: 700,
-                    color: "#22cc66",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Message Sent!
-                </h3>
-                <p
-                  style={{
-                    color: isLight ? "#555" : "#888",
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  Thanks for reaching out. I'll get back to you soon!
-                </p>
+  📬
+</div>
+
+<h3
+  style={{
+    fontFamily: "'Outfit',sans-serif",
+    fontSize: "1.4rem",
+    fontWeight: 700,
+    color: isLight ? "#22c66" : "#22c66",
+    marginBottom: "0.5rem",
+  }}
+>
+  Thanks for your message!
+</h3>
+
+<p
+  style={{
+    color: isLight ? "#555" : "#888",
+    fontSize: "0.95rem",
+    lineHeight: 1.7,
+  }}
+>
+  Please contact me directly for a faster response:
+  <br />
+  <a href="mailto:somnathhake09@gmail.com" style={{ color: "#ff6a00" }}>
+    somnathhake09@gmail.com
+  </a>
+  <br />
+  <a
+    href="https://linkedin.com/in/somnath-hake09"
+    target="_blank"
+    rel="noreferrer"
+    style={{ color: "#ff6a00" }}
+  >
+    LinkedIn
+  </a>
+</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
