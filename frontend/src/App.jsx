@@ -2555,7 +2555,7 @@ const INFO_CARDS = [
     icon: "🌐",
     title: "Portfolio",
     value: "my-portfolio09.vercel.app",
-    link: "https://my-portfolio09.vercel.app",
+    link: "https://my-portfolio09-beta.vercel.app/",
   },
 ];
 const SOCIALS = [
