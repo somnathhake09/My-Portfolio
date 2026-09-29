@@ -2056,6 +2056,29 @@ const PROJECTS = [
     label: "GitHub",
     href: "https://github.com/somnathhake09/Ch-Shivaji-Maharaj-",
   },
+},{
+  emoji: "📊",
+  image: "/student-analysis-dashboard.png",
+  title: "Real-Time Student Performance Analysis",
+  desc: "Excel-based student performance analysis project focused on data cleaning, performance analysis, lookup functions, Pivot Tables, KPI cards, and data visualization.",
+  tags: [
+    "Excel",
+    "Data Cleaning",
+    "Pivot Tables",
+    "VLOOKUP",
+    "XLOOKUP",
+    "COUNTIF",
+    "AVERAGEIF",
+    "Data Visualization"
+  ],
+  btn1: {
+    label: "View Project",
+    href: "https://github.com/somnathhake09/real-time-student-analysis-excel",
+  },
+  btn2: {
+    label: "Download File",
+    href: "https://github.com/somnathhake09/real-time-student-analysis-excel/blob/main/Real-Time-Student-Analysis-Excel.xlsx",
+  },
 },
 ];
 const FILTER_MAP = {
