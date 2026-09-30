@@ -865,7 +865,7 @@ function HomeSection({ isLight }) {
             fontWeight: 400,
           }}
         >
-          Software Developer &nbsp;|&nbsp;{" "}
+          Software Developer | Data Analyst &nbsp;|&nbsp;{" "}
           <span
             style={{
               fontFamily: "'Fira Code',monospace",
@@ -894,7 +894,7 @@ function HomeSection({ isLight }) {
             View Projects
           </HeroBtn>
           <HeroBtn href="assets/resume.pdf" download>
-            Download Resume
+            View Resume
           </HeroBtn>
         </div>
 
