@@ -2543,6 +2543,257 @@ function ProjectsSection({ isLight }) {
 }
 
 /* ════════════════════════════════════════════════════════
+   SECTION: RESUME
+════════════════════════════════════════════════════════ */
+const RESUMES = [
+  {
+    icon: "💻",
+    title: "Software Developer Resume",
+    desc: "Focused on web development, React, and full-stack projects.",
+    viewHref: "assets/Somnath_Hake_Software_Developer_resume.pdf",
+    downloadHref: "assets/Somnath_Hake_Software_Developer_resume.pdf",
+  },
+  {
+    icon: "📊",
+    title: "Data Analyst Resume",
+    desc: "Focused on Excel, SQL, data visualization, and analytics projects.",
+    viewHref: "assets/Somnath_Hake_Data_Analyst_resume.pdf",
+    downloadHref: "assets/Somnath_Hake_Data_Analyst_resume.pdf",
+  },
+];
+
+function ResumeCard({ icon, title, desc, viewHref, downloadHref, isLight, delay }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        background: isLight ? "#fff" : "#0a0a0a",
+        border: `1px solid ${hov ? "#ff5a00" : "rgba(255,90,0,0.15)"}`,
+        borderRadius: "16px",
+        padding: "clamp(1.4rem,3vw,2rem)",
+        boxShadow: hov
+          ? "0 18px 45px rgba(255,90,0,0.3)"
+          : isLight
+            ? "0 6px 24px rgba(0,0,0,0.08)"
+            : "0 6px 24px rgba(0,0,0,0.45)",
+        transform: hov ? "translateY(-8px)" : "translateY(0)",
+        transition: "all 0.35s ease",
+        animation: `cardReveal 0.6s ease ${delay} both`,
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
+    >
+      <div
+        style={{
+          width: "52px",
+          height: "52px",
+          borderRadius: "14px",
+          background: "linear-gradient(135deg,#ff5a00,#ff8800)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "1.6rem",
+          boxShadow: "0 6px 18px rgba(255,90,0,0.35)",
+        }}
+      >
+        {icon}
+      </div>
+      <div>
+        <h3
+          style={{
+            fontFamily: "'Outfit',sans-serif",
+            fontSize: "clamp(1.1rem,2.5vw,1.3rem)",
+            fontWeight: 700,
+            marginBottom: "0.4rem",
+            background: "linear-gradient(135deg,#ff5a00,#ff8800)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          style={{
+            color: isLight ? "#666" : "#999",
+            fontSize: "clamp(0.85rem,1.7vw,0.95rem)",
+            lineHeight: 1.6,
+          }}
+        >
+          {desc}
+        </p>
+      </div>
+      <div style={{ display: "flex", gap: "0.7rem", marginTop: "auto", flexWrap: "wrap" }}>
+        <a
+          href={viewHref}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            flex: 1,
+            minWidth: "110px",
+            padding: "0.55rem 1rem",
+            textAlign: "center",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: 700,
+            fontSize: "0.88rem",
+            fontFamily: "'Outfit',sans-serif",
+            border: "2px solid #ff5a00",
+            background: "rgba(255,90,0,0.08)",
+            color: isLight ? "#cc3a00" : "#ff5a00",
+            transition: "all 0.25s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "linear-gradient(135deg,#ff5a00,#ff7a00)";
+            e.currentTarget.style.color = "#fff";
+            e.currentTarget.style.borderColor = "transparent";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255,90,0,0.08)";
+            e.currentTarget.style.color = isLight ? "#cc3a00" : "#ff5a00";
+            e.currentTarget.style.borderColor = "#ff5a00";
+          }}
+        >
+          View
+        </a>
+        <a
+          href={downloadHref}
+          download
+          style={{
+            flex: 1,
+            minWidth: "110px",
+            padding: "0.55rem 1rem",
+            textAlign: "center",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: 700,
+            fontSize: "0.88rem",
+            fontFamily: "'Outfit',sans-serif",
+            border: "2px solid #ff5a00",
+            background: "linear-gradient(135deg,#ff5a00,#ff7a00)",
+            color: "#fff",
+            transition: "all 0.25s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 6px 18px rgba(255,90,0,0.45)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        >
+          Download
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function ResumeSection({ isLight }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.1 },
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <section
+      id="resume"
+      ref={ref}
+      style={{
+        padding:
+          "clamp(5rem,10vw,7rem) clamp(1rem,5vw,5%) clamp(3rem,6vw,4rem)",
+        position: "relative",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(60px)",
+        transition:
+          "opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)",
+      }}
+    >
+      <div
+        style={{ textAlign: "center", marginBottom: "clamp(2rem,4vw,3rem)" }}
+      >
+        <h2
+          style={{
+            display: "inline-block",
+            fontFamily: "'Outfit',sans-serif",
+            fontSize: "clamp(1.8rem,5vw,2.8rem)",
+            fontWeight: 800,
+            background: "linear-gradient(135deg,#ff5a00,#ff8800)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            position: "relative",
+            paddingBottom: "18px",
+            animation: visible ? "fadeInUp 0.7s ease 0.2s both" : "none",
+            opacity: visible ? undefined : 0,
+          }}
+        >
+          Resume
+          <span
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "clamp(50px,8vw,80px)",
+              height: "4px",
+              background: "linear-gradient(135deg,#ff5a00,#ff8800)",
+              borderRadius: "2px",
+              display: "block",
+            }}
+          />
+        </h2>
+        <p
+          style={{
+            marginTop: "clamp(1.2rem,2.5vw,1.6rem)",
+            color: isLight ? "#666" : "#888",
+            fontSize: "clamp(0.88rem,1.8vw,1.05rem)",
+            maxWidth: "480px",
+            margin: "clamp(1.2rem,2.5vw,1.6rem) auto 0",
+            lineHeight: 1.7,
+            animation: visible ? "fadeInUp 0.7s ease 0.3s both" : "none",
+            opacity: visible ? undefined : 0,
+          }}
+        >
+          Choose the resume that matches the role you're hiring for.
+        </p>
+      </div>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))",
+          gap: "clamp(1.2rem,2.5vw,1.8rem)",
+          maxWidth: "720px",
+          margin: "0 auto",
+        }}
+      >
+        {RESUMES.map((r, i) => (
+          <ResumeCard
+            key={r.title}
+            {...r}
+            isLight={isLight}
+            delay={`${0.1 + i * 0.12}s`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ════════════════════════════════════════════════════════
    SECTION 5: CONTACT
 ════════════════════════════════════════════════════════ */
 const INFO_CARDS = [
@@ -3884,6 +4135,7 @@ export default function PortfolioSPA() {
         <SkillsSection isLight={isLight} />
         <ServicesSection isLight={isLight} />
         <ProjectsSection isLight={isLight} />
+        <ResumeSection isLight={isLight} />
         <ContactSection isLight={isLight} />
 
         {/* ── CHATBOT ── */}
