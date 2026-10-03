@@ -894,7 +894,7 @@ function HomeSection({ isLight }) {
           <HeroBtn href="#projects" primary>
             View Projects
           </HeroBtn>
-          <HeroBtn href="assets/resume.pdf" download>
+          <HeroBtn href="#resume" download>
             View Resume
           </HeroBtn>
         </div>
